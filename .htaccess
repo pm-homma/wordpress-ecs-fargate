@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^/?(.*) https://%{HTTP_HOST}/$1 [R,L]
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^/?(.*) https://%{HTTP_HOST}/$1 [R,L]
+</IfModule>
+# END WordPress
